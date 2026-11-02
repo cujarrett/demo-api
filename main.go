@@ -368,7 +368,7 @@ func (a *app) probeObjectStorage(ctx context.Context) integrationStatus {
 	return integrationStatus{
 		Name:   name,
 		Status: "ok",
-		Detail: fmt.Sprintf("round-tripped object in %d bucket(s) (%dms)", len(dirs), time.Since(start).Milliseconds()),
+		Detail: fmt.Sprintf("wrote, read, and deleted object (%dms)", time.Since(start).Milliseconds()),
 	}
 }
 
