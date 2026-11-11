@@ -5,7 +5,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -ldflags="-s -w" -o demo-api .
 
-FROM ghcr.io/cujarrett/base-go:static-debian13@sha256:c52fc98ed00a23a3301b396062feb4385e86dd64fa1a6549ffa39791b2317904
+FROM ghcr.io/cujarrett/base-go:static-debian13@sha256:d1f5d2a974de81dffc620668df57baf021f1dab8d8b90968428dd00d20a3a090
 COPY --from=builder /app/demo-api /demo-api
 EXPOSE 8080
 ENTRYPOINT ["/demo-api"]
