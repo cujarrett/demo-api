@@ -655,7 +655,8 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 	mux.HandleFunc("GET /readyz", a.handleReadyz)
-	mux.HandleFunc("GET /", a.handleRoot)
+	// {$} matches only the root, so scanner paths like /.env get 404.
+	mux.HandleFunc("GET /{$}", a.handleRoot)
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
